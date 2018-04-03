@@ -2,11 +2,21 @@ package whu.sun.androidopensourcelibrarytest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -26,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        //Ultra pull to refresh
         ptrFrameLayout = findViewById(R.id.ptr_frame);
         //MaterialDesign头部风格
         MaterialHeader header = new MaterialHeader(this);
@@ -49,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Bottom Navigation Bar
         BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.account, "Test1"))
                 .addItem(new BottomNavigationItem(R.drawable.account, "Test2"))
@@ -72,5 +84,30 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Tab..." + position + "reselected...", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //Flexbox Layout
+        List<Func> funcList = new ArrayList<>();
+        funcList.add(new Func(R.drawable.account, "func1"));
+        funcList.add(new Func(R.drawable.account, "func2"));
+        funcList.add(new Func(R.drawable.account, "func3"));
+        funcList.add(new Func(R.drawable.account, "func4"));
+        funcList.add(new Func(R.drawable.account, "func5"));
+        funcList.add(new Func(R.drawable.account, "func6"));
+        funcList.add(new Func(R.drawable.account, "func7"));
+        funcList.add(new Func(R.drawable.account, "func8"));
+        funcList.add(new Func(R.drawable.account, "func9"));
+        funcList.add(new Func(R.drawable.account, "func10"));
+
+        FuncAdapter funcAdapter = new FuncAdapter(funcList);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
+        layoutManager.setFlexWrap(FlexWrap.WRAP);
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setAlignItems(AlignItems.STRETCH);
+        layoutManager.setJustifyContent(JustifyContent.FLEX_START);
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.setAdapter(funcAdapter);
     }
 }

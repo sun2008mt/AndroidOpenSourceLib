@@ -23,12 +23,40 @@
         cube_ptr:ptr_keep_header_when_refresh="true"
         cube_ptr:ptr_pull_to_fresh="false">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="test"
-            android:textSize="30sp"/>
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:flexWrap="wrap"
+            app:alignContent="stretch"
+            app:alignItems="stretch">
+
+            <!--<TextView-->
+                <!--android:id="@+id/txt_1"-->
+                <!--android:layout_width="120dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--app:layout_flexBasisPercent="50%"-->
+                <!--android:text="text1"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/txt_2"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--app:layout_alignSelf="center"-->
+                <!--android:text="text2"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/txt_3"-->
+                <!--android:layout_width="120dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--app:layout_alignSelf="flex_end"-->
+                <!--android:text="text3"/>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        </com.google.android.flexbox.FlexboxLayout>
 
     </in.srain.cube.views.ptr.PtrFrameLayout>
 
